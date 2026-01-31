@@ -1,0 +1,193 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  SCOUT           // Regular scout
+  SECTION_LEADER  // Manages a specific section
+  GROUP_LEADER    // Manages the entire group (Chefe de Agrupamento)
+  SUPER_ADMIN     // Full system access (developer)
+}
+
+enum Section {
+  LOBITOS
+  EXPLORADORES
+  PIONEIROS
+  CAMINHEIROS
+}
+
+enum UserStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  password      String
+  image         String?
+  
+  // Scout identification
+  scoutNumber   String?   @unique // NII - Assigned by leaders
+  
+  // Role and permissions
+  role          Role      @default(SCOUT)
+  status        UserStatus @default(APPROVED) // Defaulting to APPROVED for existing users during migration
+  
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  scoutInfo     ScoutInfo?
+  requests      Request[]
+  attendances   Attendance[]
+  news          News[]    @relation("NewsAuthor")
+  reservations  Reservation[] @relation("UserReservations")
+  payments      Payment[]     @relation("UserPayments")
+  
+  // For section leaders only - which section they manage
+  managedSection Section?
+}
+
+model ScoutInfo {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  birthDate     DateTime?
+  section       Section?  // Current section
+  team          String?   // Bando, Patrulha, Equipa, Tribo
+  totem         String?
+  
+  fieldNights   Int       @default(0)
+  
+  // Progression tracking
+  progressLevel String?   // Current progression level
+}
+
+model Event {
+  id            String    @id @default(cuid())
+  title         String
+  description   String?
+  startDate     DateTime
+  endDate       DateTime?
+  location      String?
+  section       Section?  // Global if null, or specific section
+  
+  attendances   Attendance[]
+}
+
+model Attendance {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id])
+  status    String   @default("PRESENT") // PRESENT, ABSENT, EXCUSED
+}
+
+model InventoryItem {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String   // CAMPING, KITCHEN, UNIFORM, etc.
+  size        String?  // For uniforms (S, M, L, 38, 40, etc.)
+  quantity    Int      @default(0)
+  minQuantity Int      @default(0) // For low stock alerts
+  imageUrl    String?
+  
+  requests    RequestItem[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model RequestItem {
+  id              String        @id @default(cuid())
+  requestId       String
+  request         Request       @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  inventoryItemId String
+  inventoryItem   InventoryItem @relation(fields: [inventoryItemId], references: [id])
+  quantity        Int           @default(1)
+}
+
+model Request {
+  id          String   @id @default(cuid())
+  type        String   // SPACE_RESERVATION, MATERIAL, UNIFORM, FIELD_NIGHT_VALIDATION
+  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  details     String?  // Additional text description
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  
+  items       RequestItem[]
+  
+  // For tracking who approved/rejected
+  reviewedBy  String?
+  reviewedAt  DateTime?
+}
+
+model News {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  imageUrl    String?
+  publishedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  authorId    String
+  author      User     @relation("NewsAuthor", fields: [authorId], references: [id])
+}
+
+model Journal {
+  id          String   @id @default(cuid())
+  title       String   // e.g., "Jornal de Outono 2025"
+  issueDate   DateTime // Every 3 months
+  fileUrl     String?  // To be placed later
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model Reservation {
+  id          String   @id @default(cuid())
+  type        String   // SEDE, ACANTONAMENTO, ACAMPAMENTO
+  title       String
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED, CANCELLED
+  location    String?
+  
+  userId      String
+  user        User     @relation("UserReservations", fields: [userId], references: [id])
+  
+  payments    Payment[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Payment {
+  id            String   @id @default(cuid())
+  amount        Float
+  status        String   @default("PENDING") // PENDING, PAID, REFUNDED
+  reference     String?  // Payment reference (entidade/referencia or MBWay)
+  method        String?  // CASH, MBWAY, TRANSFER
+  paidAt        DateTime?
+  
+  reservationId String?
+  reservation   Reservation? @relation(fields: [reservationId], references: [id])
+  
+  userId        String
+  user          User     @relation("UserPayments", fields: [userId], references: [id])
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

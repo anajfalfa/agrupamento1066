@@ -1,102 +1,58 @@
-// frontend/app/page.tsx
-"use client"; // necessário para Framer Motion
+"use client";
+
 import { motion } from "framer-motion";
 
-export default function Home() {
+export default function Historia() {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black font-sans">
-      {/* Header */}
-      <header className="flex justify-between items-center p-6 bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
-        <h1 className="text-xl font-bold text-blue-600">Agrupamento 1066 Ribamar</h1>
-        <nav className="flex gap-6">
-          <a
-            href="#caminheiros"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
-          >
-            Caminheiros
-          </a>
-          <a
-            href="#dirigentes"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
-          >
-            Dirigentes
-          </a>
-          <a
-            href="#atividades"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
-          >
-            Atividades
-          </a>
-        </nav>
-      </header>
-
-      {/* Banner */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="flex flex-col items-center justify-center text-center py-32 px-6 bg-blue-50 dark:bg-gray-800"
-      >
-        <h2 className="text-4xl font-bold text-blue-700 mb-4">
-          IV Secção - Caminheiros
-        </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-xl">
-          Com coragem e união, juntos na missão! Descobre as nossas atividades e o espírito do Agrupamento 1066 Ribamar.
-        </p>
-      </motion.section>
-
-      {/* Seções */}
-      <main className="flex flex-col gap-20 py-16 px-6 max-w-5xl mx-auto">
-        {/* Caminheiros */}
-        <motion.section
-          id="caminheiros"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
         >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Caminheiros</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Aqui a IV Secção aprende a viver em Tribo e Clã, conhecendo os símbolos, a mística e o patrono São Paulo.
+          <h1 className="text-4xl font-bold text-brand-green mb-6">A Nossa História</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            Um percurso marcado pela dedicação, serviço e comunidade.
           </p>
-        </motion.section>
+        </motion.div>
 
-        {/* Dirigentes */}
-        <motion.section
-          id="dirigentes"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="space-y-12"
         >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Dirigentes</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Os dirigentes guiam, apoiam e organizam todas as atividades, garantindo a aprendizagem e diversão de todos.
-          </p>
-        </motion.section>
+          {/* Timeline Item 1 */}
+          <div className="relative border-l-4 border-brand-green ml-4 pl-8 pb-8">
+            <span className="absolute -left-3 top-0 bg-brand-gold w-6 h-6 rounded-full border-4 border-white dark:border-zinc-900"></span>
+            <div className="bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-md">
+              <h3 className="text-xl font-bold text-brand-green">Fundação e Primeiros Passos</h3>
+              <span className="text-sm text-gray-500 font-semibold mb-2 block">O Início</span>
+              <p className="text-gray-700 dark:text-gray-300">
+                (Espaço reservado para a história da fundação do Agrupamento).
+              </p>
+            </div>
+          </div>
 
-        {/* Atividades */}
-        <motion.section
-          id="atividades"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
-        >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Atividades</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Descobre acampamentos, jogos, caminhadas e eventos especiais organizados pelo Agrupamento 1066 Ribamar.
-          </p>
-        </motion.section>
-      </main>
-
-      {/* Footer */}
-      <footer className="text-center py-6 text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
-        © 2026 Agrupamento 1066 Ribamar. Todos os direitos reservados.
-      </footer>
+          {/* Timeline Item 2 - Sedes */}
+          <div className="relative border-l-4 border-brand-green ml-4 pl-8 pb-8">
+            <span className="absolute -left-3 top-0 bg-brand-gold w-6 h-6 rounded-full border-4 border-white dark:border-zinc-900"></span>
+            <div className="bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-md">
+              <h3 className="text-xl font-bold text-brand-green">As Nossas Sedes</h3>
+              <span className="text-sm text-gray-500 font-semibold mb-2 block">Um Lar para o Agrupamento</span>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Ao longo dos anos, o Agrupamento teve diferentes casas que acolheram as nossas atividades e crescimento.
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                <li><strong>Sede Antiga:</strong> (Localização/Descrição antiga)</li>
+                <li><strong>Sede Atual:</strong> Rua dos Escuteiros, Nº2 Ribamar, Lourinhã. Um espaço renovado para acolher todas as secções.</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }

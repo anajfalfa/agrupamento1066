@@ -1,103 +1,96 @@
-// frontend/app/page.tsx
-"use client"; // necessário para Framer Motion
+"use client";
+
 import { motion } from "framer-motion";
+import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black font-sans">
-      {/* Header */}
-      <header className="flex justify-between items-center p-6 bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
-        <h1 className="text-xl font-bold text-blue-600">Agrupamento 1066 Ribamar</h1>
-        <nav className="flex gap-6">
-          <a
-            href="#caminheiros"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
-          >
-            Caminheiros
-          </a>
-          <a
-            href="#dirigentes"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
-          >
-            Dirigentes
-          </a>
-          <a
-            href="#atividades"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
-          >
-            Atividades
-          </a>
-        </nav>
-      </header>
+export default function PatronoPage() {
+    return (
+        <div className="min-h-screen bg-zinc-50 dark:bg-black font-sans pb-20">
+            {/* Hero Section */}
+            <motion.section
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="relative py-24 px-6 bg-gradient-to-b from-brand-gold to-brand-gold-dark text-white text-center overflow-hidden"
+            >
+                <div className="max-w-4xl mx-auto relative z-10">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6">Os Nossos Patronos</h1>
+                    <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
+                        Figuras que nos inspiram e guiam na nossa caminhada escutista e espiritual.
+                    </p>
+                </div>
+            </motion.section>
 
-      {/* Banner */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="flex flex-col items-center justify-center text-center py-32 px-6 bg-blue-50 dark:bg-gray-800"
-      >
-        <h2 className="text-4xl font-bold text-blue-700 mb-4">
-          IV Secção - Caminheiros
-        </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-xl">
-          Com coragem e união, juntos na missão! Descobre as nossas atividades e o espírito do Agrupamento 1066 Ribamar.
-        </p>
-      </motion.section>
+            <main className="max-w-6xl mx-auto px-6 -mt-10 relative z-20">
 
-      {/* Seções */}
-      <main className="flex flex-col gap-20 py-16 px-6 max-w-5xl mx-auto">
-        {/* Caminheiros */}
-        <motion.section
-          id="caminheiros"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
-        >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Caminheiros</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Aqui a IV Secção aprende a viver em Tribo e Clã, conhecendo os símbolos, a mística e o patrono São Paulo.
-          </p>
-        </motion.section>
+                {/* Padroeira do Agrupamento */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white dark:bg-zinc-900 rounded-3xl shadow-xl overflow-hidden mb-16"
+                >
+                    <div className="grid md:grid-cols-2">
+                        <div className="p-8 md:p-12 flex flex-col justify-center">
+                            <span className="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2">Padroeira da Paróquia de Ribamar</span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Nossa Senhora de Montserrat</h2>
+                            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
+                                Embora não seja o patrono oficial do CNE, Nossa Senhora de Montserrat é a figura central da nossa comunidade local e paroquial.
+                                Ela representa o acolhimento maternal e a proteção que guia todos os escuteiros do Agrupamento 1066.
+                            </p>
+                            <div className="flex items-center gap-4 text-sm text-gray-500">
+                                <span>🕊️ Paz</span>
+                                <span>⛪ Fé</span>
+                                <span>🛡️ Proteção</span>
+                            </div>
+                        </div>
+                        <div className="relative h-64 md:h-auto bg-gray-100 dark:bg-zinc-800">
+                            <Image
+                                src="/padroeira.png"
+                                alt="Nossa Senhora de Montserrat"
+                                fill
+                                className="object-cover p-8"
+                            />
+                        </div>
+                    </div>
+                </motion.div>
 
-        {/* Dirigentes */}
-        <motion.section
-          id="dirigentes"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
-        >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Dirigentes</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Os dirigentes guiam, apoiam e organizam todas as atividades, garantindo a aprendizagem e diversão de todos.
-          </p>
-        </motion.section>
+                {/* Patronos do CNE */}
+                <div className="mb-12 text-center">
+                    <h2 className="text-3xl font-bold text-brand-green mb-8">Patronos do CNE</h2>
+                </div>
 
-        {/* Atividades */}
-        <motion.section
-          id="atividades"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
-        >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Atividades</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Descobre acampamentos, jogos, caminhadas e eventos especiais organizados pelo Agrupamento 1066 Ribamar.
-          </p>
-        </motion.section>
-      </main>
+                <div className="grid md:grid-cols-2 gap-8">
+                    <motion.div
+                        whileHover={{ y: -5 }}
+                        className="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-lg border-t-4 border-red-600"
+                    >
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-xl">SG</div>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">São Jorge</h3>
+                        </div>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            O Patrono Mundial do Escutismo. Exemplo de coragem, cavalaria e lealdade.
+                            A sua lenda lembra-nos que devemos estar sempre prontos para enfrentar as dificuldades e vencer o mal com o bem.
+                        </p>
+                    </motion.div>
 
-      {/* Footer */}
-      <footer className="text-center py-6 text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
-        © 2026 Agrupamento 1066 Ribamar. Todos os direitos reservados.
-      </footer>
-    </div>
-  );
+                    <motion.div
+                        whileHover={{ y: -5 }}
+                        className="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-lg border-t-4 border-brand-green"
+                    >
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="w-12 h-12 bg-green-100 text-brand-green rounded-full flex items-center justify-center font-bold text-xl">NA</div>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">São Nuno de Santa Maria</h3>
+                        </div>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            (Nuno Álvares Pereira) Patrono do Corpo Nacional de Escutas. Heroico Condestável de Portugal que trocou a espada pela oração,
+                            sendo exemplo de serviço à Pátria e a Deus.
+                        </p>
+                    </motion.div>
+                </div>
+
+            </main>
+        </div>
+    );
 }
-

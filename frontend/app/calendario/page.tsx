@@ -1,102 +1,85 @@
-// frontend/app/page.tsx
-"use client"; // necessário para Framer Motion
+"use client";
+
+import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
+import AdvancedCalendar from "@/components/AdvancedCalendar";
+import SectionCalculator from "@/components/SectionCalculator";
+import { FaCalendarAlt, FaInfoCircle, FaLock } from "react-icons/fa";
+import Link from "next/link";
 
-export default function Home() {
+export default function CalendarioPage() {
+  const { data: session, status } = useSession();
+
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black font-sans">
-      {/* Header */}
-      <header className="flex justify-between items-center p-6 bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
-        <h1 className="text-xl font-bold text-blue-600">Agrupamento 1066 Ribamar</h1>
-        <nav className="flex gap-6">
-          <a
-            href="#caminheiros"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
+    <div className="min-h-screen bg-zinc-50 dark:bg-black p-6 md:p-12">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Public Section */}
+        <section className="space-y-8">
+          <header className="text-center md:text-left">
+            <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-2">Calendário & Secções</h1>
+            <p className="text-gray-500 max-w-2xl">Descobre a tua secção e consulta o plano de atividades do Agrupamento 1066 Ribamar.</p>
+          </header>
+
+          <div className="grid lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-2">
+              <SectionCalculator />
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-white dark:bg-zinc-900 p-8 rounded-[2rem] border border-gray-100 dark:border-zinc-800 shadow-sm">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <FaInfoCircle className="text-brand-gold" /> Informação Útil
+                </h3>
+                <ul className="space-y-4 text-sm text-gray-600 dark:text-gray-400">
+                  <li className="flex gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-green mt-2 flex-shrink-0" />
+                    As idades referem-se ao ano civil em que o elemento completa a idade.
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-green mt-2 flex-shrink-0" />
+                    As reuniões ocorrem normalmente aos Sábados na Sede do Agrupamento.
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0" />
+                    Faz login para veres o calendário detalhado da tua secção.
+                  </li>
+                </ul>
+              </div>
+
+              {!session && (
+                <div className="bg-brand-green/5 p-8 rounded-[2rem] border border-brand-green/10 text-center">
+                  <FaLock size={40} className="mx-auto text-brand-green/30 mb-4" />
+                  <h4 className="font-bold text-brand-green mb-2">Área Reservada</h4>
+                  <p className="text-xs text-brand-green/70 mb-6">Inicia sessão para consultares atividades específicas e o histórico de aniversários.</p>
+                  <Link
+                    href="/login"
+                    className="inline-block bg-brand-green text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-lg shadow-brand-green/20 hover:bg-brand-green-dark transition-all"
+                  >
+                    Entrar agora
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Private Section (Calendar) */}
+        {session ? (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="pt-12 border-t border-gray-100 dark:border-zinc-800"
           >
-            Caminheiros
-          </a>
-          <a
-            href="#dirigentes"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
-          >
-            Dirigentes
-          </a>
-          <a
-            href="#atividades"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
-          >
-            Atividades
-          </a>
-        </nav>
-      </header>
-
-      {/* Banner */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="flex flex-col items-center justify-center text-center py-32 px-6 bg-blue-50 dark:bg-gray-800"
-      >
-        <h2 className="text-4xl font-bold text-blue-700 mb-4">
-          IV Secção - Caminheiros
-        </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-xl">
-          Com coragem e união, juntos na missão! Descobre as nossas atividades e o espírito do Agrupamento 1066 Ribamar.
-        </p>
-      </motion.section>
-
-      {/* Seções */}
-      <main className="flex flex-col gap-20 py-16 px-6 max-w-5xl mx-auto">
-        {/* Caminheiros */}
-        <motion.section
-          id="caminheiros"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
-        >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Caminheiros</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Aqui a IV Secção aprende a viver em Tribo e Clã, conhecendo os símbolos, a mística e o patrono São Paulo.
-          </p>
-        </motion.section>
-
-        {/* Dirigentes */}
-        <motion.section
-          id="dirigentes"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
-        >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Dirigentes</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Os dirigentes guiam, apoiam e organizam todas as atividades, garantindo a aprendizagem e diversão de todos.
-          </p>
-        </motion.section>
-
-        {/* Atividades */}
-        <motion.section
-          id="atividades"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
-        >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Atividades</h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            Descobre acampamentos, jogos, caminhadas e eventos especiais organizados pelo Agrupamento 1066 Ribamar.
-          </p>
-        </motion.section>
-      </main>
-
-      {/* Footer */}
-      <footer className="text-center py-6 text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
-        © 2026 Agrupamento 1066 Ribamar. Todos os direitos reservados.
-      </footer>
+            <AdvancedCalendar />
+          </motion.section>
+        ) : (
+          <div className="p-20 text-center bg-gray-50/50 dark:bg-zinc-900/50 rounded-[3rem] border-2 border-dashed border-gray-200 dark:border-zinc-800">
+            <FaCalendarAlt size={48} className="mx-auto text-gray-300 mb-4" />
+            <h3 className="text-xl font-bold text-gray-400">Calendário Interno</h3>
+            <p className="text-gray-500 max-w-sm mx-auto mt-2">O acesso ao calendário de atividades e aniversários é restrito a membros registados do agrupamento.</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

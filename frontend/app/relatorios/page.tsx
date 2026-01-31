@@ -7,23 +7,23 @@ export default function Home() {
     <div className="min-h-screen bg-zinc-50 dark:bg-black font-sans">
       {/* Header */}
       <header className="flex justify-between items-center p-6 bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
-        <h1 className="text-xl font-bold text-blue-600">Agrupamento 1066 Ribamar</h1>
+        <h1 className="text-xl font-bold text-brand-green">Agrupamento 1066 Ribamar</h1>
         <nav className="flex gap-6">
           <a
             href="#caminheiros"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
+            className="text-gray-700 dark:text-zinc-200 hover:text-brand-green transition"
           >
             Caminheiros
           </a>
           <a
             href="#dirigentes"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
+            className="text-gray-700 dark:text-zinc-200 hover:text-brand-green transition"
           >
             Dirigentes
           </a>
           <a
             href="#atividades"
-            className="text-gray-700 dark:text-zinc-200 hover:text-blue-600 transition"
+            className="text-gray-700 dark:text-zinc-200 hover:text-brand-green transition"
           >
             Atividades
           </a>
@@ -35,9 +35,9 @@ export default function Home() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="flex flex-col items-center justify-center text-center py-32 px-6 bg-blue-50 dark:bg-gray-800"
+        className="flex flex-col items-center justify-center text-center py-32 px-6 bg-green-50 dark:bg-gray-800"
       >
-        <h2 className="text-4xl font-bold text-blue-700 mb-4">
+        <h2 className="text-4xl font-bold text-brand-green-dark mb-4">
           IV Secção - Caminheiros
         </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-xl">
@@ -56,7 +56,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
         >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Caminheiros</h3>
+          <h3 className="text-2xl font-semibold text-brand-green mb-4">Caminheiros</h3>
           <p className="text-gray-700 dark:text-gray-300">
             Aqui a IV Secção aprende a viver em Tribo e Clã, conhecendo os símbolos, a mística e o patrono São Paulo.
           </p>
@@ -71,7 +71,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
         >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Dirigentes</h3>
+          <h3 className="text-2xl font-semibold text-brand-green mb-4">Dirigentes</h3>
           <p className="text-gray-700 dark:text-gray-300">
             Os dirigentes guiam, apoiam e organizam todas as atividades, garantindo a aprendizagem e diversão de todos.
           </p>
@@ -86,7 +86,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md"
         >
-          <h3 className="text-2xl font-semibold text-blue-600 mb-4">Atividades</h3>
+          <h3 className="text-2xl font-semibold text-brand-green mb-4">Atividades</h3>
           <p className="text-gray-700 dark:text-gray-300">
             Descobre acampamentos, jogos, caminhadas e eventos especiais organizados pelo Agrupamento 1066 Ribamar.
           </p>

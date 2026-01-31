@@ -1,0 +1,56 @@
+done 
+corrigir morada da sede - contactos
+# a funcionar
+Fardamento: corrigir aparecer botoes de clicar seccao + info
+Seccoes - saber+ links
+- imagens capa home + 3 seccoes
+- Foto padroeira
+- Fotos quem somos
+https://escutismo.pt/pioneiros-14-aos-18-anos/
+https://escutismo.pt/lobitos-6-aos-10-anos/
+https://escutismo.pt/exploradores-10-aos-14-anos/
+https://escutismo.pt/caminheiros-18-aos-22-anos/
+lobitos.escutismo.pt
+exploradores.escutismo.pt
+pioneiros.escutismo.pt
+caminheiros.escutismo.pt
+
+to do
+- adicionar patronos Unidades: I São Estevão; II Francisco de Assis; III São Pedro; IV Santo António
+- Bandos / Patrulhas / Equipas / Tribos deste ano 2025 26
+    branco, cinzento, preto
+    Tigre, Cobra, Lobo, Falcão
+    Equipa João Garcia e Amelia Earhart
+    Tribo Malala
+npx vite --port 3000
+- Fardamento: corrigir informação!!
+- Patronos CNE
+- Historia e sedes info
+
+Área Reservada:
+- sistema de login com password a funcionar
+povoar com dados reais
+
+- sistema de signin
+- fazer uma base de dados: para escuteiros e dirigentes
+- permissoes
+- pedidos
+- tabelas: material, dmf farda... noites de campo (associadas a atividades do calendario)
+
+Noticias
+publicitar jornal do agrupamento a cada 3 meses nova edicao
+
+Calendario: 
+para visitantes: mostrar qual seria a sua seccao
+para login: seccao inserido + aniversário do mês + adicionar o aniversário + script para criar um calendario partilhado google com anos que pessoas fazem e seccao em que estao naquele anos
+
+ver sobre dominio...
+Criar base para forms - pedidos de sede; acantonamentos / acampamento - reserva de espaços.... 
+gestão de espaço e possibilidades e pagamentos
+
+
+Role	Email	Password	Section
+Super Admin	dev@agrupamento1066.pt	superadmin123	N/A
+Group Leader	admin@agrupamento1066.pt	admin123	N/A
+Chefe Lobitos	lobitos@agrupamento1066.pt	leader123	Secção I
+Escuteiro	scout@example.com	scout123	Exploradores
