@@ -19,7 +19,7 @@ export default function Home() {
 
         <div className="absolute inset-0 z-0">
           <Image
-            src="/IMG_4666.jpg" // Ou outra foto de campo/floresta
+            src="/IMG_4666.JPG" // Ou outra foto de campo/floresta
             alt="Fundo Escutismo"
             fill
             className="object-cover"
@@ -76,7 +76,7 @@ export default function Home() {
             className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg text-center"
           >
             <Image
-              src="/IMG_5275.jpg"
+              src="/IMG_5275.JPG"
               alt="Quem Somos"
               width={100}
               height={100}
@@ -99,7 +99,7 @@ export default function Home() {
             className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg text-center"
           >
             <Image
-              src="/IMG_4965.jpg"
+              src="/IMG_4965.JPG"
               alt="Atividades"
               width={100}
               height={100}
@@ -121,7 +121,7 @@ export default function Home() {
             className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg text-center"
           >
             <Image
-              src="/IMG_4934.jpg"
+              src="/IMG_4934.JPG"
               alt="Secções"
               width={100}
               height={100}
